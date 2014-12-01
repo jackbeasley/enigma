@@ -13,9 +13,9 @@ class Rotor (stepAt: Char, ciphers: Array[(Char, Char)], stepCallback: () => Uni
 	 */
 	var offset: Int = 0
 
-	def encodeForward(input: Char): Char = {
-		return forwardCipher(applyOffset(input))
-	}
+	def setOffsetPosition(pos: Int) = offset = pos
+
+	def encodeForward(input: Char): Char = forwardCipher(applyOffset(input))
 
 	def endodeBackward(input: Char): Char = backwardCipher(applyOffset(input))
 
