@@ -1,3 +1,5 @@
+package com.jackbeasley.enigma
+
 class RotorI(stepCallback: () => Unit) 
 	extends Rotor(
 		//Steps at 'R'

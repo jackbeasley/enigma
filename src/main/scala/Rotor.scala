@@ -1,3 +1,5 @@
+package com.jackbeasley.enigma
+
 class Rotor (stepAt: Char, ciphers: Array[(Char, Char)], stepCallback: () => Unit) {
 
 	val stepAtNum = stepAt.toUpper.toInt - 65
