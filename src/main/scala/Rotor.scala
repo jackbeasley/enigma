@@ -1,5 +1,8 @@
 package com.jackbeasley.enigma
 
+import scala.annotation.switch
+import com.jackbeasley.enigma.rotors._
+
 class Rotor (stepAt:Char, ciphers:Cipher, stepCallback:() => Unit, offset:Int = 0) {
 
 	val stepAtNum = stepAt.toUpper.toInt - 65
@@ -31,5 +34,19 @@ class Rotor (stepAt:Char, ciphers:Cipher, stepCallback:() => Unit, offset:Int = 
 			stepCallback
 		}
 		return r
+	}
+}
+
+object Rotor {
+
+	def createRotor(num:Int) : Rotor = {
+		val obj = (num: @switch) match{
+			case 1 => new RotorI(() => Unit)
+			case 2 => new RotorII(() => Unit)
+			case 3 => new RotorIII(() => Unit)
+			case 4 => new RotorIV(() => Unit)
+			case 5 => new RotorV(() => Unit)
+		}
+		return obj
 	}
 }
