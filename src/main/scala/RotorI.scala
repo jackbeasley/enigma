@@ -1,11 +1,11 @@
 package com.jackbeasley.enigma
 
-class RotorI(stepCallback: () => Unit) 
+class RotorI(stepCallback:() => Unit) 
 	extends Rotor(
 		//Steps at 'R'
 		'R',
 		//Value pairs
-		Array(
+		new Cipher(Array(
 			('A','E'),
 			('B','K'),
 			('C','M'),
@@ -32,9 +32,9 @@ class RotorI(stepCallback: () => Unit)
 			('X','R'),
 			('Y','C'),
 			('Z','J')
-		),
-		//Callback passed to main constructor
-		stepCallback) {
+		)),
+		stepCallback
+	) {
 
 		//Rotor type: I -> 1, II -> 2, III - > 3...
 		def rotorType = 1

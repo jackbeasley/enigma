@@ -2,18 +2,19 @@ package com.jackbeasley.enigma.test
 
 import org.scalatest._
 import com.jackbeasley.enigma.RotorI
+import com.jackbeasley.enigma.Rotor
 
 class RotorSpec extends UnitSpec {
 	"A Rotor" should "cipher chars in accordence with its forward mapping" in {
-		val rotorI = new RotorI(() => Unit)
-		rotorI.setOffsetPosition(0);
+		//Default offset is 0
+		var rotorI:Rotor = new RotorI(() => Unit)
 		rotorI.encodeForward('A') should be ('E')
-		rotorI.turnRotor
+		rotorI = rotorI.turnRotor
 
 		rotorI.encodeForward('A') should be ('K')
-		rotorI.setOffsetPosition(25);
+		rotorI = rotorI.setOffset(25);
 		rotorI.encodeForward('A') should be ('J')
-		rotorI.turnRotor
+		rotorI = rotorI.turnRotor
 		rotorI.encodeForward('A') should be ('E')
 	}
 }
