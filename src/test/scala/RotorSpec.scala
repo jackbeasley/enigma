@@ -1,7 +1,7 @@
 package com.jackbeasley.enigma.test
 
 import org.scalatest._
-import com.jackbeasley.enigma.RotorI
+import com.jackbeasley.enigma.rotors.RotorI
 import com.jackbeasley.enigma.Rotor
 
 class RotorSpec extends UnitSpec {

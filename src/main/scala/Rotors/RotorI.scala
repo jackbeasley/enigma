@@ -1,4 +1,6 @@
-package com.jackbeasley.enigma
+package com.jackbeasley.enigma.rotors
+
+import com.jackbeasley.enigma.{Rotor, Cipher}
 
 class RotorI(stepCallback:() => Unit) 
 	extends Rotor(
