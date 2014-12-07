@@ -39,6 +39,6 @@ class RotorIII(literalOffset:Int = 1)
 	) {
 
 		//Rotor type: I -> 1, II -> 2, III - > 3...
-		def rotorType = 1
+		def rotorType = 3
 
 }
