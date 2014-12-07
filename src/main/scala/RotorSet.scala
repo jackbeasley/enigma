@@ -8,15 +8,9 @@ class RotorSet (rotorTypes: Array[Int]) {
 		var a = new Array[Rotor](rotorTypes.length)
 		for(i <- 0 to rotorTypes.length - 1){
 			// Loc is plus 1 because it affects the rotor one to the right(left in machine)
-			a(i) = Rotor.createRotor(rotorTypes(i), i + 1, turnRotorCallback)
+			a(i) = Rotor.createRotor(rotorTypes(i), i + 1)
 		}
 		return a
-	}
-
-	def turnRotorCallback(loc:Int) = {
-		if(loc < rotorTypes.length){
-			rotors(loc) = rotors(loc).turnRotor
-		}
 	}
 
 	def turnFirstRotor = {

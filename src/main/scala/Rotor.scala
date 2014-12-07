@@ -7,8 +7,7 @@ class Rotor (
 	stepAt:Char,
   	ciphers:Cipher,
   	loc:Int,
-  	literalOffset:Int,
-  	stepCallback:(Int) => Unit) {
+  	literalOffset:Int) {
 
 	// Use index zero within class
 	val offset = literalOffset - 1
@@ -22,7 +21,7 @@ class Rotor (
 	 * Because of this, the max number is 25, not 26
 	 */
 
-	def setOffset(pos: Int) : Rotor = new Rotor(stepAt, ciphers, loc, pos, stepCallback)
+	def setOffset(pos: Int) : Rotor = new Rotor(stepAt, ciphers, loc, pos)
 
 	def encodeForward(input: Char): Char = forwardCipher(applyOffset(input))
 
@@ -30,15 +29,14 @@ class Rotor (
 
 	def applyOffset(letter: Char) : Char = (letter.toInt + offset).toChar
 
+	def getStepAt() : Char = stepAt
+
 	def turnRotor : Rotor = {
 		var r:Rotor = null
 		if(offset < 25){
-			r = new Rotor(stepAt, ciphers, loc, literalOffset + 1, stepCallback)
+			r = new Rotor(stepAt, ciphers, loc, literalOffset + 1)
 		} else {
-			r = new Rotor(stepAt, ciphers, loc, 1, stepCallback)
-		}
-		if(offset == stepAtNum){
-			stepCallback(loc)
+			r = new Rotor(stepAt, ciphers, loc, 1)
 		}
 		return r
 	}
@@ -49,13 +47,13 @@ class Rotor (
 
 object Rotor {
 
-	def createRotor(num:Int, loc:Int, callback:(Int) => Unit) : Rotor = {
+	def createRotor(num:Int, loc:Int) : Rotor = {
 		val obj = (num: @switch) match{
-			case 1 => new RotorI(loc, stepCallback = callback)
-			case 2 => new RotorII(loc, stepCallback = callback)
-			case 3 => new RotorIII(loc, stepCallback = callback)
-			case 4 => new RotorIV(loc, stepCallback = callback)
-			case 5 => new RotorV(loc, stepCallback = callback)
+			case 1 => new RotorI(loc)
+			case 2 => new RotorII(loc)
+			case 3 => new RotorIII(loc)
+			case 4 => new RotorIV(loc)
+			case 5 => new RotorV(loc)
 		}
 		return obj
 	}
