@@ -29,7 +29,7 @@ class Rotor (
 
 	def applyOffset(letter: Char) : Char = (letter.toInt + offset).toChar
 
-	def getStepAt() : Char = stepAt
+	def getStepAt:Char = stepAt
 
 	def turnRotor : Rotor = {
 		var r:Rotor = null
