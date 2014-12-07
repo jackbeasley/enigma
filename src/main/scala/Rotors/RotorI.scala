@@ -2,7 +2,7 @@ package com.jackbeasley.enigma.rotors
 
 import com.jackbeasley.enigma.{Rotor, Cipher}
 
-class RotorI(stepCallback:() => Unit) 
+class RotorI(loc:Int, literalOffset:Int = 1, stepCallback:(Int) => Unit) 
 	extends Rotor(
 		//Steps at 'R'
 		'R',
@@ -35,6 +35,8 @@ class RotorI(stepCallback:() => Unit)
 			('Y','C'),
 			('Z','J')
 		)),
+		loc,
+		literalOffset,
 		stepCallback
 	) {
 
