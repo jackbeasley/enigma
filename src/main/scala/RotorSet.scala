@@ -16,7 +16,6 @@ class RotorSet (rotorTypes: Array[Int]) {
 
 	def turnRotor(rotorIndex:Int = 0):Unit = {
 		var turnsAt = rotors(rotorIndex).getStepAt
-		//println(rotorIndex + " " + rotors(rotorIndex).getOffset + 1)
 		rotors(rotorIndex) = rotors(rotorIndex).turnRotor
 
 		if(turnsAt.toInt - 64 == rotors(rotorIndex).getOffset){
@@ -34,16 +33,9 @@ class RotorSet (rotorTypes: Array[Int]) {
 
 	def encodeForward(letter:Char):Char = {
 		turnSet
-		var s = ""
-		for(r <- rotors){
-			s += r.getOffset + " "
-		}
-		//println(s)
 		var c = letter
 		for(r <- rotors){
-			//println(c)
 			c = r.encodeForward(c)
-			//println(c)
 		}
 		return c
 	}
