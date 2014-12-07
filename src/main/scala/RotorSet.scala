@@ -7,15 +7,25 @@ class RotorSet (rotorTypes: Array[Int]) {
 	def createRotors:Array[Rotor] = {
 		var a = new Array[Rotor](rotorTypes.length)
 		for(i <- 0 to rotorTypes.length - 1){
-			// Loc is plus 1 because it affects the rotor one to the right(left in machine)
-			a(i) = Rotor.createRotor(rotorTypes(i), i + 1)
+			a(i) = Rotor.createRotor(rotorTypes(i))
 		}
 		return a
 	}
 
-	def turnFirstRotor = {
-		val r = rotors(0).turnRotor
-		rotors(0) = r
+	def turnSet() = turnRotor()
+
+	def turnRotor(rotorIndex:Int = 0):Unit = {
+		var turnsAt = rotors(rotorIndex).getStepAt
+		//println(rotorIndex + " " + rotors(rotorIndex).getOffset + 1)
+		rotors(rotorIndex) = rotors(rotorIndex).turnRotor
+
+		if(turnsAt.toInt - 64 == rotors(rotorIndex).getOffset){
+			// Make sure that it does not go out of bounds
+			if(rotorIndex + 1 < rotors.length){
+				turnRotor(rotorIndex + 1)
+			}
+		}
+		
 	}
 
 	def getRotors:Array[Rotor] = rotors
@@ -23,9 +33,17 @@ class RotorSet (rotorTypes: Array[Int]) {
 	def getRotorPosition(rotorIndex:Int) : Int = rotors(rotorIndex).getOffset
 
 	def encodeForward(letter:Char):Char = {
+		turnSet
+		var s = ""
+		for(r <- rotors){
+			s += r.getOffset + " "
+		}
+		//println(s)
 		var c = letter
 		for(r <- rotors){
+			//println(c)
 			c = r.encodeForward(c)
+			//println(c)
 		}
 		return c
 	}

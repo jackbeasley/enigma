@@ -9,7 +9,6 @@ class Rotor (
   	literalOffset:Int) {
 
 	// Use index zero within class
-	val offset = literalOffset - 1
 	val stepAtNum = stepAt.toUpper.toInt - 65
 	val forwardCipher: Map[Char,Char] = ciphers.getForwardCipher
 	val backwardCipher: Map[Char,Char] = ciphers.getBackwardCipher
@@ -22,22 +21,34 @@ class Rotor (
 
 	def setOffset(pos: Int) : Rotor = new Rotor(stepAt, ciphers, pos)
 
-	def encodeForward(input: Char): Char = forwardCipher(applyOffset(input))
+	def encodeForward(input: Char): Char = deOffset(forwardCipher(applyOffset(input)))
 
 	def encodeBackward(input: Char): Char = backwardCipher(applyOffset(input))
 
-	def applyOffset(letter: Char) : Char = (letter.toInt + offset).toChar
+	def applyOffset(letter: Char) : Char = {
+		var c = (letter.toInt + literalOffset - 1).toChar
+		if(c > 'Z'){
+			c = (c.toInt - 26).toChar
+		}
+		return c;
+	} 
+
+	def deOffset(letter: Char) : Char = {
+		var c = (letter.toInt - (literalOffset - 1)).toChar
+		if(c < 'A'){
+			c = (c.toInt + 26).toChar
+		}
+		return c;
+	}
 
 	def getStepAt:Char = stepAt
 
 	def turnRotor : Rotor = {
-		var r:Rotor = null
-		if(offset < 25){
-			r = new Rotor(stepAt, ciphers, literalOffset + 1)
+		if(literalOffset == 26){
+			return new Rotor(stepAt, ciphers, 1)
 		} else {
-			r = new Rotor(stepAt, ciphers, 1)
+			return new Rotor(stepAt, ciphers, literalOffset + 1)
 		}
-		return r
 	}
 
 	// Plus one to match machine characteritics
