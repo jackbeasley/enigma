@@ -23,7 +23,7 @@ class Rotor (
 
 	def encodeForward(input: Char): Char = deOffset(forwardCipher(applyOffset(input)))
 
-	def encodeBackward(input: Char): Char = backwardCipher(applyOffset(input))
+	def encodeBackward(input: Char): Char = deOffset(backwardCipher(applyOffset(input)))
 
 	def applyOffset(letter: Char) : Char = {
 		var c = (letter.toInt + literalOffset - 1).toChar

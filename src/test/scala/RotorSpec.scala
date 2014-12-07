@@ -23,6 +23,16 @@ class RotorSpec extends UnitSpec {
 		rotor.getOffset should be (2)
 		rotor.encodeForward('K') should be ('G')
 	}
+	it should "cipher chars in accordence with its backward mapping" in {
+		//Default offset is 0
+		var rotor:Rotor = Rotor.createRotor(3)
+		rotor.encodeBackward('L') should be ('F')
+		rotor = Rotor.createRotor(2)
+		rotor.encodeBackward('F') should be ('W')
+		rotor = Rotor.createRotor(1, 21)
+		rotor.encodeBackward('A') should be ('K')
+
+	}
 	it should "return the correct offset value" in {
 		var rotor:Rotor = Rotor.createRotor(1)
 		rotor.getOffset should be (1)
