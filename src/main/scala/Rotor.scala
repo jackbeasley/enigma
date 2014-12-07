@@ -6,7 +6,6 @@ import com.jackbeasley.enigma.rotors._
 class Rotor (
 	stepAt:Char,
   	ciphers:Cipher,
-  	loc:Int,
   	literalOffset:Int) {
 
 	// Use index zero within class
@@ -21,7 +20,7 @@ class Rotor (
 	 * Because of this, the max number is 25, not 26
 	 */
 
-	def setOffset(pos: Int) : Rotor = new Rotor(stepAt, ciphers, loc, pos)
+	def setOffset(pos: Int) : Rotor = new Rotor(stepAt, ciphers, pos)
 
 	def encodeForward(input: Char): Char = forwardCipher(applyOffset(input))
 
@@ -34,9 +33,9 @@ class Rotor (
 	def turnRotor : Rotor = {
 		var r:Rotor = null
 		if(offset < 25){
-			r = new Rotor(stepAt, ciphers, loc, literalOffset + 1)
+			r = new Rotor(stepAt, ciphers, literalOffset + 1)
 		} else {
-			r = new Rotor(stepAt, ciphers, loc, 1)
+			r = new Rotor(stepAt, ciphers, 1)
 		}
 		return r
 	}
@@ -47,13 +46,13 @@ class Rotor (
 
 object Rotor {
 
-	def createRotor(num:Int, loc:Int) : Rotor = {
+	def createRotor(num:Int, literalOffset:Int = 1) : Rotor = {
 		val obj = (num: @switch) match{
-			case 1 => new RotorI(loc)
-			case 2 => new RotorII(loc)
-			case 3 => new RotorIII(loc)
-			case 4 => new RotorIV(loc)
-			case 5 => new RotorV(loc)
+			case 1 => new RotorI(literalOffset)
+			case 2 => new RotorII(literalOffset)
+			case 3 => new RotorIII(literalOffset)
+			case 4 => new RotorIV(literalOffset)
+			case 5 => new RotorV(literalOffset)
 		}
 		return obj
 	}
