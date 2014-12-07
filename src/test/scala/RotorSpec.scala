@@ -10,12 +10,15 @@ class RotorSpec extends UnitSpec {
 		var rotor:Rotor = Rotor.createRotor(1)
 		rotor.encodeForward('A') should be ('E')
 		rotor = rotor.turnRotor
-
 		rotor.encodeForward('A') should be ('J')
 		rotor = rotor.setOffset(26);
 		rotor.encodeForward('A') should be ('K')
 		rotor = rotor.turnRotor
 		rotor.encodeForward('A') should be ('E')
+		// Goes over edge with offset
+		rotor = rotor.setOffset(26);
+		rotor.encodeForward('Z') should be ('D')
+		rotor = rotor.setOffset(26);
 		rotor = Rotor.createRotor(2, 2)
 		rotor.getOffset should be (2)
 		rotor.encodeForward('K') should be ('G')
