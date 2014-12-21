@@ -29,4 +29,5 @@ project/project/*
 # emacs
 *.ensime
 *.ensime_cache
-*#
+.#*
+\#*\#
