@@ -25,3 +25,7 @@ project/project/*
 # Sublime
 *.sublime-project
 *.sublime-workspace
+
+# emacs
+*.ensime
+*#
