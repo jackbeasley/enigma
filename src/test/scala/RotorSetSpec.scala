@@ -40,23 +40,11 @@ class RotorSetSpec extends UnitSpec {
 
 	it should "cipher a char backward correctly" in {
 		var rs = new RotorSet(Array(1,2,3))
-		var s = ""
-		for(r <- rs.getRotors){
-			s += r.getOffset + " "
-		}
-		println(s)
-		rs.encodeBackward('H') should be ('F')
+		rs.encodeBackward('G') should be ('A')
 		for(i <- 1 to 676){
 			rs.encodeForward('A')
 		}
-		// 676 turns rotors in pos 1, 1, 2
-		
-		val t = rs.encodeForward('Q') 
-		var s2 = ""
-		for(r <- rs.getRotors){
-			s2 += r.getOffset + " "
-		}
-		println(s2)
-		t should be ('B')
+	        // 676 turns rotors in pos 1, 1, 2
+		rs.encodeBackward('T') should be ('Q')
 	}
 }

@@ -30,7 +30,7 @@ class RotorSpec extends UnitSpec {
 		rotor = Rotor.createRotor(2)
 		rotor.encodeBackward('F') should be ('W')
 		rotor = Rotor.createRotor(1, 21)
-		rotor.encodeBackward('A') should be ('K')
+		rotor.encodeBackward('G') should be ('A')
 
 	}
 	it should "return the correct offset value" in {
