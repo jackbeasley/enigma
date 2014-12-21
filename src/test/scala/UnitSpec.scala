@@ -3,4 +3,4 @@ package com.jackbeasley.enigma.test
 import org.scalatest._
 
 abstract class UnitSpec extends FlatSpec with Matchers with
-  OptionValues with Inside with Inspectors
+    OptionValues with Inside with Inspectors
