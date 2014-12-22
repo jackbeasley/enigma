@@ -18,4 +18,8 @@ class RotorManager(rotors:RotorSet, reflector:Reflector){
     }
     return output
   }
+
+  def setRotorPos(pos:Array[Int]){
+    rotors.setPos(pos)
+  }
 }

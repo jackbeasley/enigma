@@ -47,4 +47,12 @@ class RotorSetSpec extends UnitSpec {
     // 676 turns rotors in pos 1, 1, 2
     rs.encodeBackward('T') should be ('Q')
   }
+  it should "change the positions of the rotors" in {
+    val rs = new RotorSet(Array(1,2,3))
+    rs.setPos(Array(23,1,12))
+    val rotors = rs.getRotors
+    rotors(0).getOffset should be (23)
+    rotors(1).getOffset should be (1)
+    rotors(2).getOffset should be (12)
+  }
 }

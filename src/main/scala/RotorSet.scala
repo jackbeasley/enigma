@@ -14,6 +14,18 @@ class RotorSet (rotorTypes: Array[Int]) {
 
   def turnSet() = turnRotor()
 
+  // Accepts and array of values and sets all rotors to the provided positions
+  def setPos(pos:Array[Int]) = {
+    // Check that the array contains valid positions
+    if(pos.length == rotors.length && pos.forall(x => (x >= 0 && x <= 26))){
+      for(i <- 0 to pos.length - 1){
+        rotors(i) = rotors(i).setOffset(pos(i))
+      }
+    } else {
+      // Throw exception
+    }
+  }
+
   def turnRotor(rotorIndex:Int = 0):Unit = {
     var turnsAt = rotors(rotorIndex).getStepAt
     rotors(rotorIndex) = rotors(rotorIndex).turnRotor
