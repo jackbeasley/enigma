@@ -31,3 +31,4 @@ project/project/*
 *.ensime_cache
 .#*
 \#*\#
+*~
