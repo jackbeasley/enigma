@@ -22,7 +22,7 @@ class ParseresSpec extends UnitSpec {
     data(1)._1 should be ('G')
     data(1)._2 should be ('D')
     data(2)._1 should be ('Y')
-    data(2)._2 should be ('K)
+    data(2)._2 should be ('K')
   }
 
 }

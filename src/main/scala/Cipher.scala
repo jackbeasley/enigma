@@ -8,3 +8,4 @@ class Cipher(cipherArray:Array[(Char, Char)]) {
   def getForwardCipher = forwardCipher
   def getBackwardCipher = backwardCipher
 }
+
