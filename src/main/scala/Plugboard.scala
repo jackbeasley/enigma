@@ -35,4 +35,12 @@ class Plugboard(settings:Array[(Char,Char)]) {
     }
   }
 
+  def determineMapping(target:Char):(Char,Char) = {
+    val left = settings.unzip._1.zipWithIndex
+    val right = settings.unzip._2.zipWithIndex
+    for(t <- left){
+      if(t._1 == target) return 
+    }
+  }
+
 }
