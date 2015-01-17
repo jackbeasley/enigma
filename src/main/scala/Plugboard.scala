@@ -43,4 +43,5 @@ class Plugboard(settings:Array[(Char,Char)]) {
     // No plugboard mapping found
     return (target,target)
   }
+  
 }
