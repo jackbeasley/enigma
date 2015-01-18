@@ -32,3 +32,6 @@ project/project/*
 .#*
 \#*\#
 *~
+
+# OSX
+.DS_Store
