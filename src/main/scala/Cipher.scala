@@ -7,5 +7,9 @@ class Cipher(cipherArray:Array[(Char, Char)]) {
 
   def getForwardCipher = forwardCipher
   def getBackwardCipher = backwardCipher
+
+  def cipherForward(input:Char):Char = forwardCipher(input)
+  def cipherBackward(input:Char):Char = backwardCipher(input)
+
 }
 

@@ -3,10 +3,9 @@ package com.jackbeasley.enigma
 import com.jackbeasley.enigma.reflectors._
 
 class Reflector (ciphers:Cipher){
-  val cipher:Map[Char,Char] = ciphers.getForwardCipher
-
+  
   def reflect(input:Char) : Char = {
-    return cipher(input)
+    return ciphers.cipherForward(input)
   }
 }
 

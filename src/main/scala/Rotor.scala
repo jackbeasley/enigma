@@ -10,9 +10,7 @@ class Rotor (
 
   // Use index zero within class
   val stepAtNum = stepAt.toUpper.toInt - 65
-  val forwardCipher: Map[Char,Char] = ciphers.getForwardCipher
-  val backwardCipher: Map[Char,Char] = ciphers.getBackwardCipher
-  /*
+   /*
    * Rotor position
    * For example, if 0, a -> a; if 1, a-> b
    * Smallest value is 0, for machine this would be 1
@@ -21,9 +19,12 @@ class Rotor (
 
   def setOffset(pos: Int) : Rotor = new Rotor(stepAt, ciphers, pos)
 
-  def encodeForward(input: Char): Char = deOffset(forwardCipher(applyOffset(input)))
-
-  def encodeBackward(input: Char): Char = deOffset(backwardCipher(applyOffset(input)))
+  def encodeForward(input: Char): Char = {
+    return deOffset(ciphers.cipherForward(applyOffset(input)))
+  }
+  def encodeBackward(input: Char): Char = {
+    return deOffset(ciphers.cipherBackward(applyOffset(input)))
+  }
 
   def applyOffset(letter: Char) : Char = {
     var c = (letter.toInt + literalOffset - 1).toChar

@@ -1,10 +1,16 @@
 package com.jackbeasley.enigma
 
-import com.jackbeasley.enigma
+class Plugboard(cipher:Cipher) {
 
-class Plugboard(settings:Array[(Char,Char)]) {
+  def mapForward(input:Char):Char = cipher.cipherForward(input)
 
-  def isValid():Boolean = {
+  def mapBackward(input:Char):Char = cipher.cipherBackward(input)
+
+}
+
+object Plugboard {
+
+  def isValid(settings:Array[(Char,Char)]):Boolean = {
     var rawString = ""
     // Empty the mappings to a string
     settings.foreach{case(one:Char,two:Char) => rawString += "" + one + two}
@@ -21,16 +27,20 @@ class Plugboard(settings:Array[(Char,Char)]) {
     return true
   }
 
-  def toCipher():Cipher = {
+  def toCipher(settings:Array[(Char,Char)]):Cipher = {
     // Check for validity
-    if(!isValid) return null
-    // Create inital array with alphabetical mappings
-    val table = ('A' to 'Z') zip ('A' to 'Z')
-    val finalTable = table.map(t => determineMapping(t))
-    return new Cipher(finalTable.toArray)
+    if(isValid(settings)){
+      // Create inital array with alphabetical mappings
+      val table = ('A' to 'Z') zip ('A' to 'Z')
+      val finalTable = table.map(t => Plugboard.determineMapping(t, settings))
+      return new Cipher(finalTable.toArray)
+    } else {
+      // TODO: add safe exception
+      return new Cipher(Array())
+    }
   }
 
-  def determineMapping(input:(Char,Char)):(Char,Char) = {
+  def determineMapping(input:(Char,Char), settings:Array[(Char,Char)]):(Char,Char) = {
     val target = input._2
     val left = settings.unzip._1.zipWithIndex
     val right = settings.unzip._2.zipWithIndex
@@ -43,5 +53,7 @@ class Plugboard(settings:Array[(Char,Char)]) {
     // No plugboard mapping found
     return (target,target)
   }
-  
+
 }
+
+

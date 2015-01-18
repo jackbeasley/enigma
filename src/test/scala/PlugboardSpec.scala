@@ -6,21 +6,21 @@ import com.jackbeasley.enigma.{Plugboard,Cipher}
 class PlugboardSpec extends UnitSpec {
   "A Plugboard" should "Check for validity" in {
     // Good config, no conflicts
-    var p = new Plugboard(Array(('D','C'),('A','Z'),('Y','E'),('X','T')))
-    p.isValid() should be (true)
+    var settings = Array(('D','C'),('A','Z'),('Y','E'),('X','T'))
+    Plugboard.isValid(settings) should be (true)
     // Conflict
-    p = new Plugboard(Array(('A','C'),('V','T'),('A','R'),('U','P'),('W','E')))
-    p.isValid() should be (false)
+    settings = Array(('A','C'),('V','T'),('A','R'),('U','P'),('W','E'))
+    Plugboard.isValid(settings) should be (false)
   }
   it should "Determine correct mappings" in {
-    var p = new Plugboard(Array(('A','C'),('Y','U'),('P','K')))
-    p.determineMapping(('A','A')) should be (('A','C'))
-    p.determineMapping(('C','C')) should be (('C','A'))
-    p.determineMapping(('Z','Z')) should be (('Z','Z'))
+    var settings = Array(('A','C'),('Y','U'),('P','K'))
+    Plugboard.determineMapping(('A','A'), settings) should be (('A','C'))
+    Plugboard.determineMapping(('C','C'), settings) should be (('C','A'))
+    Plugboard.determineMapping(('Z','Z'),settings) should be (('Z','Z'))
   }
   it should "Create a valid Cipher object" in {
-    var p = new Plugboard(Array(('A','C'),('Y','U'),('P','K')))
-    val c = p.toCipher()
+    var settings = Array(('A','C'),('Y','U'),('P','K'))
+    val c = Plugboard.toCipher(settings)
     val m = c.getForwardCipher
     m('A') should be ('C')
     m('Y') should be ('U')
